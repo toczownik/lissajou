@@ -6,9 +6,8 @@
 #include <QChart>
 #include <QChartView>
 #include <QLineSeries>
-#include <QPainter>
-#include <QPaintEvent>
 #include <QSlider>
+#include <QPushButton>
 
 enum variables {
     A = 0,
@@ -27,14 +26,19 @@ public:
     ~MainWindow() override;
 
 private:
+    QWidget *centralWidget;
     QLineSeries *series;
     QChart *chart;
     QChartView *chartView;
 
-    QSlider **sliders;
+    QSlider *sliders[5];
 
-    void createSeries(int size, qreal A, qreal a, qreal B, qreal b, qreal f);
+    void prepareSliders();
+    void createSeries(qreal A, qreal a, qreal B, qreal b, qreal f);
     void prepareChart();
+
+private slots:
+    void inputChanged();
 };
 
 #endif //LISSAJOU_MAINWINDOW_H
