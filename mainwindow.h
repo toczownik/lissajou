@@ -2,12 +2,14 @@
 #define LISSAJOU_MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QDockWidget>
+#include <QGridLayout>
 #include <QtGlobal>
 #include <QChart>
 #include <QChartView>
 #include <QLineSeries>
 #include <QSlider>
-#include <QPushButton>
+#include <QLabel>
 
 enum variables {
     A = 0,
@@ -27,15 +29,18 @@ public:
 
 private:
     QWidget *centralWidget;
+    QWidget *slidersWidget;
+    QGridLayout *slidersLayout;
     QLineSeries *series;
     QChart *chart;
     QChartView *chartView;
-
     QSlider *sliders[5];
+    QLabel *sliderLabels[5];
 
     void prepareSliders();
     void createSeries(qreal A, qreal a, qreal B, qreal b, qreal f);
     void prepareChart();
+    void prepareSliderLabels();
 
 private slots:
     void inputChanged();
